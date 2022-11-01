@@ -62,14 +62,13 @@ class MyMainWindow(QMainWindow):
         widget.setLayout(grid)
         self.setCentralWidget(widget)
 
-
     def sohr(self):
         con = sql.connect('Instituti.db')
 
         cur = con.cursor()
         cur.execute(
-        f"INSERT INTO Users (Name, Famil, Otch, City, Pasword, Mail, Phone, Nik) VALUES ('{self.ima1.text()}',"
-        f" '{self.familia1.text()}', '{self.otchestvo1.text()}', '{self.city1.text()}', '{self.parol1.text()}', "
-        f"'{self.pochta1.text()}', '{self.telefon1.text()}', '{self.nik1.text()}');")
+            f"INSERT INTO user (name, surname, middle_name, city, password, email, username) VALUES ('{self.ima1.text()}',"
+            f" '{self.familia1.text()}', '{self.otchestvo1.text()}', '{self.city1.text()}', '{self.parol1.text()}', "
+            f"'{self.pochta1.text()}', '{self.nik1.text()}');")
         con.commit()
         con.close()
