@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QGridLayout, QLabel, QCheckBox, QLineEdit
+import sqlite3 as sql
 
 
 class MyMainWindow(QMainWindow):
@@ -14,53 +15,61 @@ class MyMainWindow(QMainWindow):
         widget = QWidget()
         grid = QGridLayout()
 
-        nik = QLabel("Ник")
-        grid.addWidget(nik, 0, 0, 1, 1)
-        nik1 = QLineEdit('')
-        grid.addWidget(nik1, 1, 0, 1, 2)
+        self.nik = QLabel("Ник")
+        grid.addWidget(self.nik, 0, 0, 1, 1)
+        self.nik1 = QLineEdit('')
+        grid.addWidget(self.nik1, 1, 0, 1, 2)
 
-        ima = QLabel("Ваше имя")
-        grid.addWidget(ima, 2, 0, 1, 1)
-        ima1 = QLineEdit('')
-        grid.addWidget(ima1, 3, 0, 1, 2)
+        self.ima = QLabel("Ваше имя")
+        grid.addWidget(self.ima, 2, 0, 1, 1)
+        self.ima1 = QLineEdit('')
+        grid.addWidget(self.ima1, 3, 0, 1, 2)
 
-        familia = QLabel("Ваша Фамилия")
-        grid.addWidget(familia, 4, 0, 1, 1)
-        familia1 = QLineEdit('')
-        grid.addWidget(familia1, 5, 0, 1, 2)
+        self.familia = QLabel("Ваша Фамилия")
+        grid.addWidget(self.familia, 4, 0, 1, 1)
+        self.familia1 = QLineEdit('')
+        grid.addWidget(self.familia1, 5, 0, 1, 2)
 
-        otchestvo = QLabel("Ваше отчество")
-        grid.addWidget(otchestvo, 6, 0, 1, 1)
-        otchestvo1 = QLineEdit('')
-        grid.addWidget(otchestvo1, 7, 0, 1, 2)
+        self.otchestvo = QLabel("Ваше отчество")
+        grid.addWidget(self.otchestvo, 6, 0, 1, 1)
+        self.otchestvo1 = QLineEdit('')
+        grid.addWidget(self.otchestvo1, 7, 0, 1, 2)
 
-        gorod = QLabel("Напишите город")
-        grid.addWidget(gorod, 8, 0, 1, 1)
-        city1 = QLineEdit('')
-        grid.addWidget(city1, 9, 0, 1, 2)
+        self.gorod = QLabel("Напишите город")
+        grid.addWidget(self.gorod, 8, 0, 1, 1)
+        self.city1 = QLineEdit('')
+        grid.addWidget(self.city1, 9, 0, 1, 2)
 
-        parol = QLabel("Напишите пароль")
-        grid.addWidget(parol, 10, 0, 1, 1)
-        parol1 = QLineEdit('')
-        grid.addWidget(parol1, 11, 0, 1, 2)
+        self.parol = QLabel("Напишите пароль")
+        grid.addWidget(self.parol, 10, 0, 1, 1)
+        self.parol1 = QLineEdit('')
+        grid.addWidget(self.parol1, 11, 0, 1, 2)
 
-        pochta = QLabel("Напишите почта")
-        grid.addWidget(pochta, 12, 0, 1, 1)
-        pochta1 = QLineEdit('')
-        grid.addWidget(pochta1, 13, 0, 1, 2)
+        self.pochta = QLabel("Напишите почта")
+        grid.addWidget(self.pochta, 12, 0, 1, 1)
+        self.pochta1 = QLineEdit('')
+        grid.addWidget(self.pochta1, 13, 0, 1, 2)
 
-        telefon = QLabel("Напишите телефон")
-        grid.addWidget(telefon, 14, 0, 1, 1)
-        telefon1 = QLineEdit('')
-        grid.addWidget(telefon1, 15, 0, 1, 2)
+        self.telefon = QLabel("Напишите телефон")
+        grid.addWidget(self.telefon, 14, 0, 1, 1)
+        self.telefon1 = QLineEdit('')
+        grid.addWidget(self.telefon1, 15, 0, 1, 2)
 
-
-
-
-
-
-
-
+        self.registr = QPushButton("Регистрация")
+        grid.addWidget(self.registr, 16, 0, 1, 1)
+        self.registr.clicked.connect(self.sohr)
 
         widget.setLayout(grid)
         self.setCentralWidget(widget)
+
+
+    def sohr(self):
+        con = sql.connect('Instituti.db')
+
+        cur = con.cursor()
+        cur.execute(
+        f"INSERT INTO Users (Name, Famil, Otch, City, Pasword, Mail, Phone, Nik) VALUES ('{self.ima1.text()}',"
+        f" '{self.familia1.text()}', '{self.otchestvo1.text()}', '{self.city1.text()}', '{self.parol1.text()}', "
+        f"'{self.pochta1.text()}', '{self.telefon1.text()}', '{self.nik1.text()}');")
+        con.commit()
+        con.close()
