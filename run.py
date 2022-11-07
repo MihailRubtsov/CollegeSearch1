@@ -2,7 +2,7 @@ import sys
 import sqlite3 as sql
 
 from PyQt5.QtWidgets import QApplication
-from custom_widgets.registra_window import MyMainWindow
+from custom_widgets.main_window import MyMainWindow
 
 
 def main():
