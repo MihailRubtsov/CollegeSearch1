@@ -32,8 +32,8 @@ class UniversityDetailView(QWidget):
 
     def init_ui(self):
         grid = QGridLayout()
-        foto = QLineEdit('')
-        grid.addWidget(foto, 0, 0, 2, 2)
+        foto = QLabel('test')
+        grid.addWidget(foto, 1, 0, 2, 2)
 
         nazv1 = QLabel('Названия')
         grid.addWidget(nazv1, 2, 0, 1, 2)
@@ -54,6 +54,5 @@ class UniversityDetailView(QWidget):
         grid.addWidget(ball1, 5, 0, 1, 2)
 
         grid.addWidget(ControlWidget(parent=self.parent(), previous_widget=self.previous_widget), 0, 0, 1, 5)
-
 
         self.setLayout(grid)

@@ -16,7 +16,7 @@ class ScrollArea(QScrollArea):
 
     def init_buttons(self):
         for i in range(5):
-            self.grid.addWidget(Preview(self), i, 0, 1, 1)
+            self.grid.addWidget(Preview(self, self.show_detail_view), i, 0, 1, 1)
 
     def init_ui(self):
         # Создал пустой виджет, установил на него сетку и сказал, что она теперь отображается в ScrollArea
