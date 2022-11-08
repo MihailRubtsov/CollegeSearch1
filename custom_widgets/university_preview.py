@@ -10,10 +10,16 @@ class Preview(QWidget):
     def init_ui(self):
         grid = QGridLayout()
         grid.setSpacing(10)
-        label = QLabel("Тест")
-        btn = QPushButton("Подробнее")
 
-        grid.addWidget(label, 0, 0, 1, 3)
-        grid.addWidget(btn, 2, 4, 1, 4)
+        name = QLabel("Название")
+        price = QLabel("Цена ")
+        city = QLabel("Город")
+        btn = QPushButton("Подробнее об институте")
+
+
+        grid.addWidget(name, 0, 0, 1, 3)
+        grid.addWidget(price, 2, 0, 1, 4)
+        grid.addWidget(city, 2, 3, 1, 1)
+        grid.addWidget(btn, 2, 5, 1 , 1)
 
         self.setLayout(grid)

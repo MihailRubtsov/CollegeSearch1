@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QGridLayout, QWidget, QPushButton, QLabel, QVBoxLayout
+from PyQt5.QtWidgets import QGridLayout, QWidget, QPushButton, QLabel, QVBoxLayout, QLineEdit
 
 
 class ControlWidget(QWidget):
@@ -32,13 +32,28 @@ class UniversityDetailView(QWidget):
 
     def init_ui(self):
         grid = QGridLayout()
-        label = QLabel("Тестовый универ")
-        description = QLabel("Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum.")
-        btn = QPushButton("Оставить отзыв")
+        foto = QLineEdit('')
+        grid.addWidget(foto, 0, 0, 2, 2)
+
+        nazv1 = QLabel('Названия')
+        grid.addWidget(nazv1, 2, 0, 1, 2)
+
+        stran1 = QLabel('Страна')
+        grid.addWidget(stran1, 3, 0, 1, 1)
+
+        city1 = QLabel('Город')
+        grid.addWidget(city1, 3, 1, 1, 1)
+
+        pred1 = QLabel('Предметы нужные для поступления')
+        grid.addWidget(pred1, 4, 0, 1, 2)
+
+        price1 = QLabel('Цена')
+        grid.addWidget(price1, 6, 0, 1, 2)
+
+        ball1 = QLabel('Сумарный балл нужный для поступления')
+        grid.addWidget(ball1, 5, 0, 1, 2)
 
         grid.addWidget(ControlWidget(parent=self.parent(), previous_widget=self.previous_widget), 0, 0, 1, 5)
-        grid.addWidget(label, 1, 1, 2, 2)
-        grid.addWidget(description, 4, 0, 5, 5)
-        grid.addWidget(btn, 10, 4, 1, 1)
+
 
         self.setLayout(grid)

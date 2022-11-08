@@ -9,7 +9,7 @@ class MyMainWindow(QMainWindow):
         super(MyMainWindow, self).__init__(parent)
         self.stack = QStackedWidget(self)
         self.init_ui()
-        self.setMinimumSize(300, 300)
+        self.setMinimumSize(350, 350)
         self.setWindowTitle("Выбор института")
 
     def init_ui(self):
