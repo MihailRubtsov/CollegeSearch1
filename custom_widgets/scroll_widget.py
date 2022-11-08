@@ -17,9 +17,9 @@ class ScrollArea(QScrollArea):
 
     def init_previews(self):
         # TODO: Сделать код более модульным
-        data = db_manager.get_university(0, 4)
+        data = db_manager.get_university(0, 10)
         print(data)
-        for i in range(3):
+        for i in range(len(data)):
             self.grid.addWidget(Preview(
                 data[i]['id'],
                 data[i]['title'],

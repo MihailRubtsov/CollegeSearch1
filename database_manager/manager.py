@@ -23,7 +23,7 @@ class Manager():
                 'title': record[1],
                 'country': record[2],
                 'city': record[3],
-                'minimum_price': record[4],
+                'minimum_price': record[4] if len(record) > 4 else '-',
             }
             res.append(data)
 

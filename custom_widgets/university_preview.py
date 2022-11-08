@@ -14,6 +14,7 @@ class Preview(QWidget):
         grid.setSpacing(10)
 
         name = QLabel(title)
+        name.setStyleSheet("font-weight: bold;")
         price = QLabel(str(min_price) + "₽")
         city = QLabel(city)
         btn = QPushButton("Подробнее")
