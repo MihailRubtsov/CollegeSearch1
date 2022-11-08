@@ -4,7 +4,6 @@ from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QGridLayout, QLab
 class MyMainWindow(QMainWindow):
     def __init__(self, parent=None):
         # TODO: сделать название приложения, установить минимальный размер
-
         super(MyMainWindow, self).__init__(parent)
         self.init_ui()
         self.setWindowTitle("Вход")
@@ -22,6 +21,7 @@ class MyMainWindow(QMainWindow):
         grid.addWidget(reg, 3, 1, 1, 1)
         vfod = QPushButton("Вход")
         grid.addWidget(vfod, 3, 3, 1, 1)
+        self.setLayout(grid)
 
 
 

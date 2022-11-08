@@ -1,28 +1,17 @@
-from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QGridLayout, QLabel
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QGridLayout, QLabel, QStackedWidget
+from custom_widgets.scroll_widget import ScrollArea
 
 
 class MyMainWindow(QMainWindow):
     def __init__(self, parent=None):
         # TODO: сделать название приложения, установить минимальный размер
         super(MyMainWindow, self).__init__(parent)
+        self.stack = QStackedWidget(self)
         self.init_ui()
         self.setMinimumSize(300, 300)
 
     def init_ui(self):
-        widget = QWidget()
-        grid = QGridLayout()
-
-        btn = QPushButton("Бюджет")
-        btn2 = QPushButton("Платка")
-        btn3 = QPushButton("Целевое")
-
-        grid.addWidget(btn, 0, 0, 2, 2)
-        grid.addWidget(btn2, 0, 2, 2, 2)
-
-        lbl = QLabel("Hello")
-        lbl2 = QLabel("OK")
-
-        grid.addWidget(lbl2, 1, 0, 1, 1)
-
-        widget.setLayout(grid)
-        self.setCentralWidget(widget)
+        scroll = ScrollArea(self)
+        scroll.setObjectName('university_list_view')
+        self.stack.addWidget(scroll)
+        self.setCentralWidget(self.stack)
