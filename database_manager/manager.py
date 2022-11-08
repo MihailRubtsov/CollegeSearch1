@@ -18,7 +18,13 @@ class Manager():
 
         res = []
         for record in raw_data:
-            data = {'title': record[1], 'country': record[2], 'city': record[3], 'minimum_price': record[4]}
+            data = {
+                'id': record[0],
+                'title': record[1],
+                'country': record[2],
+                'city': record[3],
+                'minimum_price': record[4],
+            }
             res.append(data)
 
         return tuple(res)

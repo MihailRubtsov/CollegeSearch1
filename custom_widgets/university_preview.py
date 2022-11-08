@@ -3,19 +3,20 @@ from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QLabel
 
 class Preview(QWidget):
 
-    def __init__(self, parent=None, call_function=None):
+    def __init__(self, id_of_record: int, title: str, country: str, city: str, min_price: float, parent=None, call_function=None):
         super(Preview, self).__init__(parent)
         self.call_function = call_function
-        self.init_ui()
+        self.id = id_of_record
+        self.init_ui(title, country, city, min_price)
 
-    def init_ui(self):
+    def init_ui(self, title, country, city, min_price):
         grid = QGridLayout()
         grid.setSpacing(10)
 
-        name = QLabel("Название")
-        price = QLabel("Цена ")
-        city = QLabel("Город")
-        btn = QPushButton("Подробнее об институте")
+        name = QLabel(title)
+        price = QLabel(str(min_price) + "₽")
+        city = QLabel(city)
+        btn = QPushButton("Подробнее")
         btn.clicked.connect(self.call_function)
 
         grid.addWidget(name, 0, 0, 1, 3)
