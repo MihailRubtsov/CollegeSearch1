@@ -10,6 +10,8 @@ class MyMainWindow(QMainWindow):
         self.setWindowTitle("Вход")
         self.setGeometry(300, 300, 330, 330)
 
+
+
     def init_ui(self):
         widget = QWidget()
         grid = QGridLayout()

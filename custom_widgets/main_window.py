@@ -6,6 +6,7 @@ class MyMainWindow(QMainWindow):
         # TODO: сделать название приложения, установить минимальный размер
         super(MyMainWindow, self).__init__(parent)
         self.init_ui()
+        self.setMinimumSize(300, 300)
 
     def init_ui(self):
         widget = QWidget()
