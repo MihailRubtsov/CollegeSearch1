@@ -3,6 +3,7 @@ from custom_widgets.scroll_widget import ScrollArea
 
 
 class MyMainWindow(QMainWindow):
+    """Главное окно. Отображает список университетов и меню."""
     def __init__(self, parent=None):
         # TODO: сделать название приложения, установить минимальный размер
         super(MyMainWindow, self).__init__(parent)
@@ -11,6 +12,5 @@ class MyMainWindow(QMainWindow):
 
     def init_ui(self):
         scroll = ScrollArea(self)
-        scroll.setObjectName('university_list_view')
         self.stack.addWidget(scroll)
         self.setCentralWidget(self.stack)
