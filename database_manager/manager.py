@@ -1,7 +1,7 @@
 import sqlite3
 
 
-class Manager():
+class Manager:
 
     def __init__(self, database_path):
         self.db_path = database_path

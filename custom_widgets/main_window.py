@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QGridLayout, QLabel, QStackedWidget
 from custom_widgets.scroll_widget import ScrollArea
 from controls.pagination import PaginationController
+from controls.main_menu import MainMenu
 
 
 class MyMainWindow(QMainWindow):
@@ -19,8 +20,9 @@ class MyMainWindow(QMainWindow):
 
         scroll = ScrollArea(self)
         self.stack.addWidget(scroll)
-        grid.addWidget(self.stack, 0, 0, 5, 1)
-        grid.addWidget(PaginationController(self), 6, 0, 1, 1)
+        grid.addWidget(MainMenu(self), 0, 0, 1, 1)
+        grid.addWidget(self.stack, 1, 0, 5, 1)
+        grid.addWidget(PaginationController(self), 7, 0, 1, 1)
 
         widget.setLayout(grid)
         self.setCentralWidget(widget)
