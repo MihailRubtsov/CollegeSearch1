@@ -9,6 +9,7 @@ class MyMainWindow(QMainWindow):
         self.stack = QStackedWidget(self)
         self.init_ui()
         self.setMinimumSize(300, 300)
+        self.setWindowTitle("Выбор института")
 
     def init_ui(self):
         scroll = ScrollArea(self)

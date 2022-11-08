@@ -1,14 +1,13 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QGridLayout, QLabel, QCheckBox, QLineEdit
 
 
-class MyMainWindow(QMainWindow):
+class SearchFilterWindow(QWidget):
     def __init__(self, parent=None):
         # TODO: сделать название приложения, установить минимальный размер
 
-        super(MyMainWindow, self).__init__(parent)
+        super(SearchFilterWindow, self).__init__(parent)
         self.init_ui()
-        self.setWindowTitle("Выбор института")
-        self.setGeometry(300, 300, 330, 330)
+
 
     def init_ui(self):
         widget = QWidget()
