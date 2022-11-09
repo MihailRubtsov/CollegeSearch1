@@ -10,8 +10,7 @@ class MainMenu(QWidget):
     def init_ui(self):
         grid = QGridLayout()
 
-        grid.addWidget(QPushButton("Мой профиль"), 0, 0, 1, 2)
-        grid.addLayout(QHBoxLayout(), 0, 3, 1, 3)
+        grid.addLayout(QHBoxLayout(), 0, 0, 1, 6)
         search_field = QLineEdit()
         search_field.setPlaceholderText("Найдите ВУЗ по названию...")
         grid.addWidget(search_field, 0, 6, 1, 3)
