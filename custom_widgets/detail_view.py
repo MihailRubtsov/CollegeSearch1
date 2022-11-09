@@ -1,11 +1,13 @@
 from PyQt5.QtWidgets import QGridLayout, QWidget, QPushButton, QLabel, QVBoxLayout, QLineEdit, QSizePolicy, QTableWidget
 from PyQt5 import Qt, QtGui
 from PyQt5.QtWidgets import QTableWidgetItem, QHeaderView
+from config import db_manager
 
 
 class ControlWidget(QWidget):
     def __init__(self, parent=None, previous_widget=None):
         super(ControlWidget, self).__init__(parent)
+        self.main_window = parent
         self.previous_widget = previous_widget
         self.back = QPushButton("Назад")
         self.back.clicked.connect(self.return_to_previous_widget)
@@ -24,13 +26,15 @@ class ControlWidget(QWidget):
         tmp = main_window_stack.currentWidget()
         main_window_stack.setCurrentIndex(0)
         main_window_stack.removeWidget(tmp)
+        self.main_window.pagination_controller.show()
 
 
 class UniversityDetailView(QWidget):
     def __init__(self, parent=None, previous_widget=None, info_about_university: dict={}):
         super(UniversityDetailView, self).__init__(parent)
         self.previous_widget = previous_widget
-        self.info = info_about_university
+        self.info = info_about_university   # self.info['id']
+        self.required_scores = db_manager.get_list_of_required_scores(self.info['id'])
         self.init_ui()
 
     def init_ui(self):

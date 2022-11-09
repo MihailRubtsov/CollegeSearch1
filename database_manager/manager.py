@@ -28,3 +28,23 @@ class Manager:
             res.append(data)
 
         return tuple(res)
+
+    def get_list_of_required_scores(self, university_id: int):
+        """Получаем все проходные баллы для кадого ВУЗа"""
+
+        con = sqlite3.connect(self.db_path)
+        cur = con.cursor()
+        raw_data = cur.execute(f"""SELECT * FROM required_score 
+        WHERE university_id={university_id} ORDER BY course_id;""").fetchall()
+
+        res = {}
+
+        for record in raw_data:
+            course_title = cur.execute(f"""SELECT (title) FROM course WHERE id = {record[-2]};""").fetchone()[0].title()
+            try:
+                res[course_title].update({record[1]: record[2]})
+            except KeyError:
+                res[course_title] = {
+                    record[1]: record[2]
+                }
+        print(res)
