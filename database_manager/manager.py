@@ -47,4 +47,12 @@ class Manager:
                 res[course_title] = {
                     record[1]: record[2]
                 }
-        print(res)
+        con.close()
+        return res
+
+    def get_all_universities(self):
+        """Получаем кортеж всех ВУЗов"""
+
+        con = sqlite3.connect(self.db_path)
+        cur = con.cursor()
+
