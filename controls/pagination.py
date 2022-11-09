@@ -34,7 +34,9 @@ class PaginationController(QWidget):
         print(self.parent().parent())
         if self.parent().parent().stack.currentIndex() != 0:
             self.parent().parent().stack.setCurrentIndex(self.parent().parent().stack.currentIndex() - 1)
+            self.label.setText(f"{self.parent().parent().stack.currentIndex() + 1} из {self.parent().parent().stack.count()}")
 
     def go_to_next_page(self):
         if self.parent().parent().stack.currentIndex() + 1 < self.parent().parent().stack.count():
             self.parent().parent().stack.setCurrentIndex(self.parent().parent().stack.currentIndex() + 1)
+            self.label.setText(f"{self.parent().parent().stack.currentIndex() + 1} из {self.parent().parent().stack.count()}")
