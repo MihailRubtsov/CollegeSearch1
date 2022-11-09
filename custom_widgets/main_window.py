@@ -13,6 +13,7 @@ class MyMainWindow(QMainWindow):
     def __init__(self, parent=None):
         # TODO: сделать название приложения, установить минимальный размер
         super(MyMainWindow, self).__init__(parent)
+        self.pagination_controller = None
         self.stack = QStackedWidget(self)
         self.init_ui()
         self.setMinimumSize(550, 550)
@@ -34,6 +35,7 @@ class MyMainWindow(QMainWindow):
 
         grid.addWidget(MainMenu(self), 0, 0, 1, 1)
         grid.addWidget(self.stack, 1, 0, 5, 1)
-        grid.addWidget(PaginationController(self), 7, 0, 1, 1)
+        self.pagination_controller = PaginationController(self)
+        grid.addWidget(self.pagination_controller, 7, 0, 1, 1)
         widget.setLayout(grid)
         self.setCentralWidget(widget)
