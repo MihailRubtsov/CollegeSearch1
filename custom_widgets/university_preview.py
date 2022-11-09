@@ -1,3 +1,4 @@
+from PyQt5 import Qt
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QLabel
 
 
@@ -21,7 +22,7 @@ class Preview(QWidget):
         grid.setSpacing(10)
 
         name = QLabel(title)
-        name.setStyleSheet("font-weight: bold;")
+        name.setStyleSheet("font-weight: bold; color: blue;")
         price = QLabel(str(min_price) + "₽")
         city = QLabel(city)
         btn = QPushButton(self)

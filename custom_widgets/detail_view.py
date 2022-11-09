@@ -25,7 +25,7 @@ class ControlWidget(QWidget):
 
 
 class UniversityDetailView(QWidget):
-    def __init__(self, parent=None, previous_widget=None, info_about_university: dict = {}):
+    def __init__(self, parent=None, previous_widget=None, info_about_university: dict={}):
         super(UniversityDetailView, self).__init__(parent)
         self.previous_widget = previous_widget
         self.info = info_about_university

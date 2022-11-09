@@ -39,6 +39,6 @@ class ScrollArea(QScrollArea):
 
     def show_detail_view(self):
         self.main_window.stack.addWidget(UniversityDetailView(parent=self.main_window,
-                                                              previous_widget=self.main_window.centralWidget()),
-                                         info_about_university=self.sender().parent().info)
-        self.main_window.stack.setCurrentIndex(2)
+                                                              previous_widget=self.main_window.centralWidget(),
+                                                              info_about_university=self.sender().parent().info))
+        self.main_window.stack.setCurrentIndex(self.main_window.stack.count() - 1)
