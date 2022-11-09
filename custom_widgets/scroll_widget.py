@@ -24,8 +24,8 @@ class ScrollArea(QScrollArea):
             self.grid.addWidget(Preview(
                 data[i]['id'],
                 data[i]['title'],
-                data[i]['city'],
                 data[i]['country'],
+                data[i]['city'],
                 data[i]['minimum_price'],
                 self, self.show_detail_view
             ), i, 0)
