@@ -35,7 +35,6 @@ class UniversityDetailView(QWidget):
 
     def init_ui(self):
         grid = QGridLayout()
-        print(self.info)
 
         nazv1 = QLabel(self.info['title'])
         nazv1.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
@@ -79,6 +78,8 @@ class UniversityDetailView(QWidget):
 
         grid.addWidget(self.tableWidget, 5, 0, 1, 2)
 
-        grid.addWidget(ControlWidget(parent=self.parent(), previous_widget=self.previous_widget), 0, 0, 1, 5)
+        control_widget = ControlWidget(parent=self.parent(), previous_widget=self.previous_widget)
+        control_widget.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
+        grid.addWidget(control_widget, 0, 0, 1, 5)
 
         self.setLayout(grid)
