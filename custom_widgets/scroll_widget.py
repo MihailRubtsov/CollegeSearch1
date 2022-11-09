@@ -26,7 +26,7 @@ class ScrollArea(QScrollArea):
                 data[i]['title'],
                 data[i]['country'],
                 data[i]['city'],
-                data[i]['minimum_price'],
+                data[i]['minimum_price'] if data[i]['minimum_price'] is not None else '0',
                 self, self.show_detail_view
             ), i, 0)
         self.last_id_of_record = data[-1]['id']

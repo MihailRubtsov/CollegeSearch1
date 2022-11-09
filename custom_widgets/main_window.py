@@ -23,9 +23,11 @@ class MyMainWindow(QMainWindow):
         grid.setSpacing(0)
         widget = QWidget()
 
+        start_index = 0
+
         for i in range(MAX_PAGE_COUNT):
-            scroll = ScrollArea(self, i * COUNT_OF_UNIVERSITIES_AT_PAGE)
-            print(scroll.last_id_of_record, scroll.count_of_records)
+            scroll = ScrollArea(self, start_index)
+            start_index = scroll.last_id_of_record + 1
             self.stack.addWidget(scroll)
             if scroll.count_of_records != 5:
                 break
