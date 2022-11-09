@@ -6,14 +6,14 @@ class Manager:
     def __init__(self, database_path):
         self.db_path = database_path
 
-    def get_university(self, start_index: int, end_index: int) -> tuple:
+    def get_university(self, start_index: int, count: int) -> tuple:
         """Получение записей об университетах, начиная со start_index до end_index"""
-        if end_index < start_index:
+        if count < 0:
             raise IndexError("Стартовый индекс не может больше конечного.")
 
         con = sqlite3.connect(self.db_path)
         cur = con.cursor()
-        raw_data = cur.execute(f"""SELECT * FROM university WHERE id>={start_index} AND id<={end_index};""").fetchall()
+        raw_data = cur.execute(f"""SELECT * FROM university WHERE id>={start_index} LIMIT {count};""").fetchall()
         con.close()
 
         res = []

@@ -4,6 +4,10 @@ from controls.pagination import PaginationController
 from controls.main_menu import MainMenu
 
 
+MAX_PAGE_COUNT = 10
+COUNT_OF_UNIVERSITIES_AT_PAGE = 5
+
+
 class MyMainWindow(QMainWindow):
     """Главное окно. Отображает список университетов и меню."""
     def __init__(self, parent=None):
@@ -16,13 +20,18 @@ class MyMainWindow(QMainWindow):
 
     def init_ui(self):
         grid = QGridLayout()
+        grid.setSpacing(0)
         widget = QWidget()
 
-        scroll = ScrollArea(self)
-        self.stack.addWidget(scroll)
+        for i in range(MAX_PAGE_COUNT):
+            scroll = ScrollArea(self, i * COUNT_OF_UNIVERSITIES_AT_PAGE)
+            print(scroll.last_id_of_record, scroll.count_of_records)
+            self.stack.addWidget(scroll)
+            if scroll.count_of_records != 5:
+                break
+
         grid.addWidget(MainMenu(self), 0, 0, 1, 1)
         grid.addWidget(self.stack, 1, 0, 5, 1)
         grid.addWidget(PaginationController(self), 7, 0, 1, 1)
-
         widget.setLayout(grid)
         self.setCentralWidget(widget)

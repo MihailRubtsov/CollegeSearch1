@@ -7,6 +7,13 @@ class Preview(QWidget):
         super(Preview, self).__init__(parent)
         self.call_function = call_function
         self.id = id_of_record
+        self.info = {
+            'id': id_of_record,
+            'title': title,
+            'country': country,
+            'city': city,
+            'min_price': min_price,
+        }
         self.init_ui(title, country, city, min_price)
 
     def init_ui(self, title, country, city, min_price):
@@ -17,7 +24,8 @@ class Preview(QWidget):
         name.setStyleSheet("font-weight: bold;")
         price = QLabel(str(min_price) + "₽")
         city = QLabel(city)
-        btn = QPushButton("Подробнее")
+        btn = QPushButton(self)
+        btn.setText("Подробнее")
         btn.clicked.connect(self.call_function)
 
         grid.addWidget(name, 0, 0, 1, 3)
