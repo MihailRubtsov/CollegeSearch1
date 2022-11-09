@@ -24,8 +24,8 @@ class ScrollArea(QScrollArea):
             self.grid.addWidget(Preview(
                 data[i]['id'],
                 data[i]['title'],
-                data[i]['city'],
                 data[i]['country'],
+                data[i]['city'],
                 data[i]['minimum_price'],
                 self, self.show_detail_view
             ), i, 0)
@@ -39,6 +39,6 @@ class ScrollArea(QScrollArea):
 
     def show_detail_view(self):
         self.main_window.stack.addWidget(UniversityDetailView(parent=self.main_window,
-                                                              previous_widget=self.main_window.centralWidget()),
-                                         info_about_university=self.sender().parent().info)
+                                                              previous_widget=self.main_window.centralWidget(),
+                                         info_about_university=self.sender().parent().info))
         self.main_window.stack.setCurrentIndex(2)

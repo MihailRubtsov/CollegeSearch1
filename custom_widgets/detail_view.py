@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QGridLayout, QWidget, QPushButton, QLabel, QVBoxLayout, QLineEdit
+from PyQt5 import Qt, QtGui
 
 
 class ControlWidget(QWidget):
@@ -33,26 +34,35 @@ class UniversityDetailView(QWidget):
 
     def init_ui(self):
         grid = QGridLayout()
-        foto = QLabel('test')
-        grid.addWidget(foto, 1, 0, 2, 2)
+        print(self.info)
 
-        nazv1 = QLabel('Названия')
+        nazv1 = QLabel(self.info['title'])
+        nazv1.setStyleSheet("font-weight: bold;")
+        nazv1.setFont(QtGui.QFont("Times", 15, QtGui.QFont.Bold))
+        nazv1.setContentsMargins(0, 0, 0, 0)
         grid.addWidget(nazv1, 2, 0, 1, 2)
 
-        stran1 = QLabel('Страна')
+        stran1 = QLabel(self.info['country'])
+        stran1.setFont(QtGui.QFont("Times", 8, QtGui.QFont.Bold))
+        stran1.setContentsMargins(0, 0, 0, 10)
         grid.addWidget(stran1, 3, 0, 1, 1)
 
-        city1 = QLabel('Город')
+        city1 = QLabel(self.info['city'])
+        city1.setFont(QtGui.QFont("Times", 8, QtGui.QFont.Bold))
         grid.addWidget(city1, 3, 1, 1, 1)
 
-        pred1 = QLabel('Предметы нужные для поступления')
-        grid.addWidget(pred1, 4, 0, 1, 2)
+        pred1 = QLabel('Предметы')
+        grid.addWidget(pred1, 5, 0, 1, 2)
 
-        price1 = QLabel('Цена')
-        grid.addWidget(price1, 6, 0, 1, 2)
+        price2 = str(self.info['min_price']) + " Рублей в год"
+
+        price1 = QLabel(price2)
+        price1.setStyleSheet("font-weight: bold;")
+        price1.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
+        grid.addWidget(price1, 3, 3, 1, 2)
 
         ball1 = QLabel('Сумарный балл нужный для поступления')
-        grid.addWidget(ball1, 5, 0, 1, 2)
+        grid.addWidget(ball1, 6, 0, 1, 2)
 
         grid.addWidget(ControlWidget(parent=self.parent(), previous_widget=self.previous_widget), 0, 0, 1, 5)
 
