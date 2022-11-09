@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QGridLayout, QWidget, QPushButton, QLabel, QVBoxLayout, QLineEdit
+from PyQt5.QtWidgets import QGridLayout, QWidget, QPushButton, QLabel, QVBoxLayout, QLineEdit, QSizePolicy
 from PyQt5 import Qt, QtGui
 
 
@@ -37,17 +37,18 @@ class UniversityDetailView(QWidget):
         print(self.info)
 
         nazv1 = QLabel(self.info['title'])
-        nazv1.setStyleSheet("font-weight: bold;")
+        nazv1.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         nazv1.setFont(QtGui.QFont("Times", 15, QtGui.QFont.Bold))
         nazv1.setContentsMargins(0, 0, 0, 0)
         grid.addWidget(nazv1, 2, 0, 1, 2)
 
         stran1 = QLabel(self.info['country'])
+        stran1.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         stran1.setFont(QtGui.QFont("Times", 8, QtGui.QFont.Bold))
-        stran1.setContentsMargins(0, 0, 0, 10)
         grid.addWidget(stran1, 3, 0, 1, 1)
 
         city1 = QLabel(self.info['city'])
+        city1.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         city1.setFont(QtGui.QFont("Times", 8, QtGui.QFont.Bold))
         grid.addWidget(city1, 3, 1, 1, 1)
 
