@@ -32,6 +32,7 @@ class ControlWidget(QWidget):
 class UniversityDetailView(QWidget):
     def __init__(self, parent=None, previous_widget=None, info_about_university: dict={}):
         super(UniversityDetailView, self).__init__(parent)
+        self.tableWidget = None
         self.previous_widget = previous_widget
         self.info = info_about_university   # self.info['id']
         self.required_scores = db_manager.get_list_of_required_scores(self.info['id'])
@@ -61,26 +62,36 @@ class UniversityDetailView(QWidget):
 
         self.tableWidget = QTableWidget()
 
+        database_items = self.required_scores.items()
+        unique_years = set()
+        for item in database_items:
+            unique_years.update(item[1].keys())
+        maximum_year_count = len(unique_years)
+
         # Row count
-        self.tableWidget.setRowCount(4)
+        self.tableWidget.setRowCount(len(database_items))
 
         # Column count
-        self.tableWidget.setColumnCount(2)
+        self.tableWidget.setColumnCount(maximum_year_count)
+        for i, year in enumerate(reversed(tuple(unique_years))):
+            self.tableWidget.setHorizontalHeaderItem(i, QTableWidgetItem(str(year)))
 
-        self.tableWidget.setItem(0, 0, QTableWidgetItem("Name"))
-        self.tableWidget.setItem(0, 1, QTableWidgetItem("City"))
-        self.tableWidget.setItem(1, 0, QTableWidgetItem("Aloysius"))
-        self.tableWidget.setItem(1, 1, QTableWidgetItem("Indore"))
-        self.tableWidget.setItem(2, 0, QTableWidgetItem("Alan"))
-        self.tableWidget.setItem(2, 1, QTableWidgetItem("Bhopal"))
-        self.tableWidget.setItem(3, 0, QTableWidgetItem("Arnavi"))
-        self.tableWidget.setItem(3, 1, QTableWidgetItem("Mandsaur"))
+        for i, item in enumerate(database_items):
+            self.tableWidget.setVerticalHeaderItem(i, QTableWidgetItem(item[0]))
+            for j, year_score in enumerate(item[1].items()):
+                index = 0
+                for col in range(self.tableWidget.columnCount()):
+                    if int(self.tableWidget.horizontalHeaderItem(
+                            self.tableWidget.horizontalHeader().logicalIndex(col)).text()) == year_score[0]:
+                        index = col
+                        break
+                self.tableWidget.setItem(i, index, QTableWidgetItem(str(year_score[1])))
 
         # Table will fit the screen horizontally
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-        grid.addWidget(self.tableWidget, 5, 0, 1, 2)
+        grid.addWidget(self.tableWidget, 5, 0, 1, 5)
 
         control_widget = ControlWidget(parent=self.parent(), previous_widget=self.previous_widget)
         control_widget.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
