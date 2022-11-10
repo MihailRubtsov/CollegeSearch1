@@ -50,9 +50,14 @@ class Manager:
         con.close()
         return res
 
-    def get_all_universities(self):
+    def get_universities(self, additional_condition: str = None):
         """Получаем кортеж всех ВУЗов"""
 
         con = sqlite3.connect(self.db_path)
         cur = con.cursor()
-
+        if additional_condition is None:
+            data = cur.execute(f"""SELECT title FROM university;""").fetchall()
+        else:
+            data = cur.execute(f"""SELECT title FROM university {additional_condition};""").fetchall()
+        con.close()
+        return [title[0] for title in data]
