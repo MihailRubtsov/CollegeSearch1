@@ -3,8 +3,10 @@ from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QLabel
 
 
 class Preview(QWidget):
+    # Создание главного экрана на котором находятся все университеты с минимальной информацией о них
 
-    def __init__(self, id_of_record: int, title: str, country: str, city: str, min_price: float, parent=None, call_function=None):
+    def __init__(self, id_of_record: int, title: str, country: str, city: str, min_price: float, parent=None,
+                 call_function=None):
         super(Preview, self).__init__(parent)
         self.call_function = call_function
         self.id = id_of_record
@@ -18,6 +20,7 @@ class Preview(QWidget):
         self.init_ui(title, country, city, min_price)
 
     def init_ui(self, title, country, city, min_price):
+        # Изменение шрифтов, цветов и улучшение внешнего вида с созданием кнопки подробнее
         grid = QGridLayout()
         grid.setSpacing(10)
 

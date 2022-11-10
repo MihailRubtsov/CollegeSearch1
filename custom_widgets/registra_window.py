@@ -4,7 +4,7 @@ import sqlite3 as sql
 
 class MyMainWindow(QMainWindow):
     def __init__(self, parent=None):
-        # TODO: сделать название приложения, установить минимальный размер
+        # Создание виджета с регистрацией пользователя
 
         super(MyMainWindow, self).__init__(parent)
         self.init_ui()

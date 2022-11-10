@@ -3,15 +3,13 @@ from custom_widgets.scroll_widget import ScrollArea
 from controls.pagination import PaginationController
 from controls.main_menu import MainMenu
 
-
 MAX_PAGE_COUNT = 10
 COUNT_OF_UNIVERSITIES_AT_PAGE = 5
 
 
 class MyMainWindow(QMainWindow):
-    """Главное окно. Отображает список университетов и меню."""
+    # Главное окно и его описание
     def __init__(self, parent=None):
-        # TODO: сделать название приложения, установить минимальный размер
         super(MyMainWindow, self).__init__(parent)
         self.scroll = None
         self.main_menu = None
@@ -38,8 +36,8 @@ class MyMainWindow(QMainWindow):
 
         self.init_university_list()
 
-        #self.main_menu = MainMenu(self)
-        #grid.addWidget(self.main_menu, 0, 0, 1, 1)
+        # self.main_menu = MainMenu(self)
+        # grid.addWidget(self.main_menu, 0, 0, 1, 1)
         grid.addWidget(self.stack, 0, 0, 5, 1)
         self.pagination_controller = PaginationController(self)
         grid.addWidget(self.pagination_controller, 6, 0, 1, 1)

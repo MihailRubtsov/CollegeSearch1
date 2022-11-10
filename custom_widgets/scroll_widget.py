@@ -5,7 +5,7 @@ from config import db_manager
 
 
 class ScrollArea(QScrollArea):
-    """Класс используется для скроллинга вузов"""
+    # Создание скролинг виджета, чтобы можно было листать вверх вниз
 
     def __init__(self, parent: QMainWindow = None, start_index_of_data: int = 0):
         super(ScrollArea, self).__init__(parent)

@@ -9,7 +9,8 @@ class ControlWidget(QWidget):
         super(ControlWidget, self).__init__(parent)
         self.main_window = parent
         self.previous_widget = previous_widget
-        self.back = QPushButton("Назад")
+        self.back = QPushButton(
+            "Назад")  # Создание кнопки назад с помощью которой можем венуться из подробного просмотра университета
         self.back.clicked.connect(self.return_to_previous_widget)
         self.init_ui()
 
@@ -20,8 +21,6 @@ class ControlWidget(QWidget):
         self.setLayout(grid)
 
     def return_to_previous_widget(self):
-        """Получаем стек виджетов на главном окне.
-        Меняем главный виджет на список ВУЗов и удаляем виджет с текущим ВУЗом."""
         main_window_stack = self.parent().parent()
         tmp = main_window_stack.currentWidget()
         main_window_stack.setCurrentIndex(0)
@@ -30,23 +29,23 @@ class ControlWidget(QWidget):
 
 
 class UniversityDetailView(QWidget):
-    def __init__(self, parent=None, previous_widget=None, info_about_university: dict={}):
+    def __init__(self, parent=None, previous_widget=None, info_about_university: dict = {}):
         super(UniversityDetailView, self).__init__(parent)
         self.tableWidget = None
         self.previous_widget = previous_widget
-        self.info = info_about_university   # self.info['id']
+        self.info = info_about_university  # self.info['id']
         self.required_scores = db_manager.get_list_of_required_scores(self.info['id'])
         self.init_ui()
 
     def init_ui(self):
         grid = QGridLayout()
+        # Создание названия города и цены и изменение их штриха
 
         nazv1 = QLabel(self.info['title'])
         nazv1.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         nazv1.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
         nazv1.setContentsMargins(0, 0, 0, 0)
         grid.addWidget(nazv1, 2, 0, 1, 2)
-
 
         city1 = QLabel(self.info['city'])
         city1.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
@@ -59,6 +58,8 @@ class UniversityDetailView(QWidget):
         price1.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         price1.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
         grid.addWidget(price1, 4, 0, 1, 2)
+
+        # Создание таблицы с последующий заполнением её значениями из БД
 
         self.tableWidget = QTableWidget()
 
