@@ -13,6 +13,7 @@ class MyMainWindow(QMainWindow):
     def __init__(self, parent=None):
         # TODO: сделать название приложения, установить минимальный размер
         super(MyMainWindow, self).__init__(parent)
+        self.scroll = None
         self.main_menu = None
         self.pagination_controller = None
         self.stack = QStackedWidget(self)
@@ -20,24 +21,27 @@ class MyMainWindow(QMainWindow):
         self.setMinimumSize(550, 550)
         self.setWindowTitle("Выбор института")
 
+    def init_university_list(self):
+        start_index = 0
+
+        for i in range(MAX_PAGE_COUNT):
+            self.scroll = ScrollArea(self, start_index)
+            start_index = self.scroll.last_id_of_record + 1
+            self.stack.addWidget(self.scroll)
+            if self.scroll.count_of_records != 5:
+                break
+
     def init_ui(self):
         grid = QGridLayout()
         grid.setSpacing(0)
         widget = QWidget()
 
-        start_index = 0
+        self.init_university_list()
 
-        for i in range(MAX_PAGE_COUNT):
-            scroll = ScrollArea(self, start_index)
-            start_index = scroll.last_id_of_record + 1
-            self.stack.addWidget(scroll)
-            if scroll.count_of_records != 5:
-                break
-
-        self.main_menu = MainMenu(self)
-        grid.addWidget(self.main_menu, 0, 0, 1, 1)
-        grid.addWidget(self.stack, 1, 0, 5, 1)
+        #self.main_menu = MainMenu(self)
+        #grid.addWidget(self.main_menu, 0, 0, 1, 1)
+        grid.addWidget(self.stack, 0, 0, 5, 1)
         self.pagination_controller = PaginationController(self)
-        grid.addWidget(self.pagination_controller, 7, 0, 1, 1)
+        grid.addWidget(self.pagination_controller, 6, 0, 1, 1)
         widget.setLayout(grid)
         self.setCentralWidget(widget)

@@ -7,6 +7,7 @@ class MainMenu(QWidget):
     def __init__(self, parent=None):
         super(MainMenu, self).__init__(parent)
         self.completer = QCompleter(db_manager.get_universities())
+        self.main_window = parent
         self.init_ui()
 
     def init_ui(self):

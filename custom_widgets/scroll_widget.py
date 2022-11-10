@@ -43,4 +43,3 @@ class ScrollArea(QScrollArea):
                                                               info_about_university=self.sender().parent().info))
         self.main_window.stack.setCurrentIndex(self.main_window.stack.count() - 1)
         self.main_window.pagination_controller.hide()
-        self.main_window.main_menu.hide()
