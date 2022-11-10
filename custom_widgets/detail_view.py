@@ -27,6 +27,7 @@ class ControlWidget(QWidget):
         main_window_stack.setCurrentIndex(0)
         main_window_stack.removeWidget(tmp)
         self.main_window.pagination_controller.show()
+        self.main_window.main_menu.show()
 
 
 class UniversityDetailView(QWidget):
